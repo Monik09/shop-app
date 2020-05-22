@@ -62,6 +62,7 @@ class CartItem extends StatelessWidget {
             padding: EdgeInsets.all(8),
             child: ListTile(
               leading: CircleAvatar(
+                radius: 35,
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: FittedBox(child: Text("Rs.$price")),

@@ -29,7 +29,7 @@ class UserProductScreen extends StatelessWidget {
               future: _refreshProducts(context),
               builder:(ctx,snapshot)=>snapshot.connectionState==ConnectionState.waiting?Center(child: CircularProgressIndicator(),) :RefreshIndicator(
           onRefresh: ()=> _refreshProducts(context) ,
-                child: Consumner<Prdoucts>(
+                child: Consumer<Products>(
                                   builder:(ctx,productData,_)=> Padding(
             padding: EdgeInsets.all(8),
             child: ListView.builder(
@@ -38,7 +38,7 @@ class UserProductScreen extends StatelessWidget {
                   children: <Widget>[
                     UserProductItem(
                       productData.items[i].id,
-                        productData.items[i].title, productData.items[i].imageUrl),
+                        productData.items[i].title, productData.items[i].imageUrl,),
                     Divider(),
                   ],
               ),

@@ -14,50 +14,76 @@ class ProductDetailScreen extends StatelessWidget {
         Provider.of<Products>(context, listen: false).findById(productId);
     //by listening false this will not rebuild when we have new object
     // if (loadedProduct != null) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(loadedProduct.title),
-        ),
-        // backgroundColor:Colors.black38,
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: 300,
-                width: double.infinity,
-                child: Image.network(loadedProduct.imageUrl, fit: BoxFit.cover),
+    return Scaffold(
+      // appBar: AppBar(
+      //   title: Text(loadedProduct.title),
+      // ),
+      // backgroundColor:Colors.black38,
+      body: CustomScrollView(
+        // SingleChildScrollView(
+        slivers: <Widget>[
+          //slivers are scrollabe parts on screen
+          SliverAppBar(
+            expandedHeight: 300,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              title:  Container(alignment: Alignment.bottomLeft,child: Text(loadedProduct.title,style:TextStyle(color: Colors.pinkAccent)),),
+              background: Hero(
+                tag: loadedProduct.id,
+                child: Image.network(loadedProduct.imageUrl, fit: BoxFit.cover,),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Rs.${loadedProduct.price}",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 20,
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                // Container(alignment: Alignment.bottomLeft,child: Text(loadedProduct.title,style:TextStyle(backgroundColor: Colors.black54)),margin: EdgeInsets.only(left:6,),),
+                SizedBox(
+                  height: 10,
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
+                Text(
+                  "Rs.${loadedProduct.price}",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 22,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   width: double.infinity,
                   child: Text(
                     loadedProduct.description,
                     textAlign: TextAlign.center,
+                    style:TextStyle(fontFamily: 'Lato',fontSize: 20,),
                     softWrap: true,
-                  )),
-            ],
+                  ),
+                ),
+                SizedBox(height: 800,),
+              ],
+            ),
           ),
-        ),
-      );
-    }
-    // return Scaffold(
-    //   appBar: AppBar(title:Text('No item')),
-    //   body: Center(
-    //     child: Text("Add Products"),
-    //   ),
-    // );
+        ],
+        // // // child: Column(
+        // // //   children: <Widget>[
+        // // //     Container(
+        // // //       height: 300,
+        // // //       width: double.infinity,
+        // // //       child:
+        // // //     ),
+        // //   ],
+        // ),
+      ),
+    );
+  }
+  // return Scaffold(
+  //   appBar: AppBar(title:Text('No item')),
+  //   body: Center(
+  //     child: Text("Add Products"),
+  //   ),
+  // );
   // }
 }

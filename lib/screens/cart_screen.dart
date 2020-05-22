@@ -14,7 +14,7 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Your Cart"),
       ),
-      backgroundColor: Colors.pinkAccent,
+      backgroundColor: Colors.white70,
       body: Column(
         children: <Widget>[
           Card(
@@ -37,7 +37,7 @@ class CartScreen extends StatelessWidget {
                     label: Text(
                       'Rs.${cart.totalAmount.toStringAsFixed(2)}',
                       style: TextStyle(
-                        color: Theme.of(context).primaryColor,
+                        color: Colors.white,
                       ),
                     ),
                     backgroundColor: Theme.of(context).primaryColor,
@@ -92,7 +92,8 @@ class _OrderButtonState extends State<OrderButton> {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      child:_isLoading?CircularProgressIndicator(): Text("Order Now"),
+      // disabledColor: Colors.white38,
+      child:_isLoading?CircularProgressIndicator(): Text("Order Now",style: TextStyle(color: Colors.tealAccent),),
       onPressed: (widget.cart.totalAmount == 0 || _isLoading)
           ? null
           : () async{
