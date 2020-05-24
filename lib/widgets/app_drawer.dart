@@ -6,12 +6,22 @@ import '../screens/userproduct_screen.dart';
 import '../providers/auth.dart';
 import '../helpers/custom_route.dart';
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends StatefulWidget {
+  @override
+  _AppDrawerState createState() => _AppDrawerState();
+}
+
+class _AppDrawerState extends State<AppDrawer> {
+  String email;
+
   @override
   Widget build(BuildContext context) {
+    // email=Provider.of<Auth>(context).gettingEmaiId();
     return Drawer(
         child: Column(
       children: <Widget>[
+        // if(email.length!=0)
+        // UserAccountsDrawerHeader( accountEmail: Text(email),accountName:CircleAvatar(child: Text(email[0]),backgroundColor: Colors.white54,) ,),
         AppBar(
           title: Text("Hi i am your Ms.Drawer"),
           automaticallyImplyLeading: false,
